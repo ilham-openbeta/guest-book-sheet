@@ -13,6 +13,7 @@ const {
 const compression = require("compression");
 const helmet = require("helmet");
 const RateLimit = require("express-rate-limit");
+require('dotenv').config()
 
 // load the environment variable 
 const keysEnvVar = process.env['GOOGLE_SERVICE_ACCOUNT'];
