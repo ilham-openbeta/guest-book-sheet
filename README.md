@@ -1,1 +1,1 @@
-# guest-book-sheet
+# Guest Book API using Google Sheet as database
