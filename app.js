@@ -10,6 +10,9 @@ const {
 const {
   google
 } = require('googleapis');
+const compression = require("compression");
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
 
 // load the environment variable 
 const keysEnvVar = process.env['GOOGLE_SERVICE_ACCOUNT'];
@@ -44,6 +47,15 @@ const corsOption = {
   origin: corsAllowed.trim().split(/\s*,\s*/)
 }
 
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 30,
+});
+
+
+app.use(compression());
+app.use(helmet());
+app.use(limiter);
 app.use(cors(corsOption))
 app.use(bodyParser.json({
   limit: '99kb'
@@ -53,6 +65,9 @@ app.use(bodyParser.urlencoded({
   limit: '99kb'
 }));
 app.use(xss());
+
+
+
 
 
 
