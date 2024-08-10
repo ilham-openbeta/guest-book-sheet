@@ -16,10 +16,11 @@ const RateLimit = require("express-rate-limit");
 require('dotenv').config()
 
 // load the environment variable 
-const keysEnvVar = process.env['GOOGLE_SERVICE_ACCOUNT'];
+var keysEnvVar = process.env['GOOGLE_SERVICE_ACCOUNT'];
 if (!keysEnvVar) {
   throw new Error('The $GOOGLE_SERVICE_ACCOUNT environment variable was not found!');
 }
+keysEnvVar = Buffer.from(process.env['GOOGLE_SERVICE_ACCOUNT'], 'base64').toString('utf-8');
 
 const spreadsheetId = process.env['SPREADSHEET_ID'];
 if (!spreadsheetId) {
