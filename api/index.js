@@ -94,7 +94,9 @@ const formatedTimestamp = () => {
   return `${date} ${time}`
 }
 
-
+app.get('/', function (req, res) {
+  res.send("nothing here")
+});
 
 app.get('/get-message', async (req, res) => {
   let messages = []
@@ -119,7 +121,7 @@ app.get('/get-message', async (req, res) => {
 })
 
 app.post('/send-message', async (req, res) => {
-  let status = req.body.status == "Hadir" ? "Hadir" : "Tidak Hadir"; 
+  let status = req.body.status == "Hadir" ? "Hadir" : "Tidak Hadir";
   try {
     let sheetResponse = await sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
