@@ -67,7 +67,7 @@ const corsOption = {
 
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 30,
+  max: 60,
 });
 
 app.use(compression());
@@ -284,6 +284,10 @@ app.get("/record", async function (req, res) {
     events: events,
   });
 });
+
+// test API rate limit, makesure ip response match with your ip 
+app.get('/ip', (request, response) => response.send(request.ip))
+app.set('trust proxy', 1)
 
 app.listen(port, () => {
   console.log(`Guest Book app listening on port ${port}`);
