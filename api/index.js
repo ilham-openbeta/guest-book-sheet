@@ -285,6 +285,8 @@ app.get("/record", async function (req, res) {
   });
 });
 
+// https://express-rate-limit.mintlify.app/reference/error-codes#err-erl-unexpected-x-forwarded-for
+// https://express-rate-limit.mintlify.app/guides/troubleshooting-proxy-issues
 // test API rate limit, makesure ip response match with your ip 
 app.get('/ip', (request, response) => response.send(request.ip))
 app.set('trust proxy', 1)
