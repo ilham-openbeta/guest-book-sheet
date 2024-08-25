@@ -121,7 +121,7 @@ app.get("/", function (req, res) {
   res.send("nothing here");
 });
 
-app.get("/get-message", async (req, res) => {
+app.get("/message", async (req, res) => {
   let messages = [];
   try {
     let sheetResponse = await sheets.spreadsheets.values.get({
@@ -143,7 +143,7 @@ app.get("/get-message", async (req, res) => {
   res.send(messages);
 });
 
-app.post("/send-message", async (req, res) => {
+app.post("/message", async (req, res) => {
   let status = req.body.status == "Hadir" ? "Hadir" : "Tidak Hadir";
   try {
     let sheetResponse = await sheets.spreadsheets.values.append({
